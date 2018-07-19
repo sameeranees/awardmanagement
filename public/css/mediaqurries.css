@@ -1,0 +1,509 @@
+@media (min-width: 992px) {
+    body {
+        /*padding-top: 56px;*/
+    }
+}
+@media (min-width: 1200px){
+    .container {
+        max-width: 1060px;
+    }
+    .sec-mobiles{
+        /*background: url("../images/object1.png") no-repeat;*/
+        margin-top:-70px;
+    }
+    #testimonials .container.cont-main {
+       /* margin-top: -200px;
+        padding-bottom: 315px;*/
+    }
+}
+
+@media screen and (max-width:440px) {
+    .video-heading {
+        position: relative;
+        top: 30px;
+    }
+}
+
+
+@media screen and (max-width:580px){
+
+    app-buttons img {
+        width:50%;
+    }
+    .user-details,.user-name,.user-city,.user-image{
+        display: none;
+    }
+    .card.carousel-item {
+        height: auto;
+        margin-top: 18px;
+        padding:0;
+    }
+
+    a.carousel-control-prev, a.carousel-control-next{
+        top:50%;
+        width: 25px;
+        height: 25px;
+    }
+    a.carousel-control-prev i:before, a.carousel-control-next i:before {
+        top: -5px;
+        position: relative;
+    }
+    .card .carousel-caption{
+        padding-left:15px;
+        padding-right:15px;
+    }
+    .ratings{
+        padding-top:10px;
+        padding-bottom:5px;
+    }
+    .carousel-caption{
+        padding-bottom:0;
+    }
+}
+
+@media screen and (min-width:768px){
+    #faqs-sec{
+        text-align:center;
+    }
+
+}
+
+@media screen and (max-width:991px){
+    .navbar-nav a.nav-link{
+        padding-left:6px;
+    }
+    .inner-cont,
+    #register-sec .inner-cont{
+        background:#fe6b00;
+
+    }
+    #testimonials .inner-cont{
+        background: #fafafa;
+    }
+    #video-sec .inner-cont{
+        background: #fe6b00;
+    }
+    #workplace .inner-cont{
+        background:#fafafa;
+    }
+
+    .cont-main{
+        padding:0;
+    }
+    .forrun-heading{
+        font-size:28px;
+        width:100%;
+    }
+    .light-para{
+        width: 100%;
+    }
+
+    .navbar-toggler{
+        background: url(../images/hamburger.png)no-repeat;
+        padding: 10px;
+        margin: 0px;
+        background-position: top center;
+    }
+    .navbar-toggler:focus{
+        outline:none;
+    }
+
+    div[class*="object-"]{
+        display: none;
+    }
+
+    .forrun-heading{
+        font-size:26px;
+        text-align: center;
+    }
+    .light-para{
+        text-align: center;
+    }
+    .app-buttons{
+        width:100%;
+    }
+    .app-buttons img {
+        margin: 0px auto 12px auto;
+        display: table;
+    }
+    .mbl-1 {
+        top: -10px;
+        margin-left: 0;
+    }
+    .mbl-1 img {
+        width: 100%;
+    }
+    .video-heading {
+        margin: 10px auto 0px auto;
+    }
+
+    #videoContainer #video {
+        height: calc(500px - 175px);
+    }
+    #videoContainer .overlay{
+        display: none;
+    }
+
+    #faqs-sec{
+        margin-top:0;
+    }
+
+    #workplace .cont-main{
+        padding:0;
+    }
+
+    .btn-page-btns{
+        width:100px;
+        font-size:14px;
+    }
+
+    .registration-form{
+        padding:0;
+    }
+    .cont-testi{
+        margin:0;
+    }
+    .registration-form .card-body{
+        padding:20px;
+        background:none;
+        box-shadow:none;
+    }
+    .registration-form .form-control{
+        margin-bottom:0;
+        border:none;
+    }
+    #register-sec p, #contact-sec p{
+        margin-bottom:10px;
+    }
+    .registration-form .form-group:last-child {
+        margin-bottom: 0;
+    }
+    #register-sec .cont-main, #contact-sec .cont-main {
+        padding: 66px 0px 25px 0;
+    }
+    #register-sec .cont-testi{
+        padding:0;
+    }
+    #contact-sec .cont-main {
+        padding: 10px 0px 0 0;
+    }
+
+    #register-sec p, #contact-sec p {
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    .address-bar .row > div {
+        margin-bottom: 10px;
+        margin-top: 5px;
+        font-size: 14px;
+    }
+    .inner-cont .card.testi-heading{
+        margin-top:0 !important;
+        padding-top: 20px;
+        padding-bottom:5px;
+        font-size: 26px;
+        margin-bottom:0;
+    }
+    .card .carousel-caption{
+        margin-top:0;
+        font-weight:400;
+    }
+    .faq .faqs-answer {
+        font-weight: 400;
+        font-size: 14px;
+    }
+    #register-sec h2,
+    #register-sec p{
+        color:#FFF;
+    }
+
+}
+
+
+
+@media screen and (min-width:768px) and (max-width:992px) {
+    .mbl-1{
+        top:32px;
+    }
+    .forrun-heading,
+    .light-para{
+        text-align:left;
+    }
+    .cont-testi {
+        margin: 0 auto;
+    }
+    .video-player {
+        margin: 0px auto 0 auto;
+    }
+    .copyrights, .footer-links ul li a{
+        text-align: left !important;
+        font-size:14px;
+    }
+    .footer-links ul li:not(.last-footer-li) {
+        padding: 0 2px;
+    }
+    .social-icons i {
+        width: 25px;
+        height: 25px;
+        padding: 3px 0 22px 0;
+        margin-left:0;
+    }
+    .sec-txt{
+        margin-top: 30px;
+        margin-bottom: 10px;
+    }
+}
+
+
+@media screen and (min-width:992px) and (max-width:1199px){
+    .inner-cont{
+        background-size:cover;
+        background-position: 30% 100%;
+    }
+    .cont-main {
+        padding: 150px 0;
+    }
+    .cus-img-size{
+        width:100%;
+    }
+    #home .object-1{
+        width:100px;
+        bottom:50px;
+    }
+    div[class*=object-] img{
+        width:100%;
+    }
+    .sec-txt {
+        margin-top: 0;
+    }
+    .forrun-heading{
+        font-size:28px;
+    }
+    .light-para{
+        font-size:18px;
+    }
+    .mbl-1 {
+        top: 0;
+        margin-left: 0;
+        left: -80px;
+    }
+    #testimonials{
+        margin-top:-100px;
+    }
+    #testimonials .inner-cont{
+        background-size:cover;
+    }
+    #testimonials .cont-main{
+        padding-top:0;
+    }
+    #testimonials .cont-testi {
+        margin: 0 auto 125px auto !important;
+        position: relative;
+        top: 160px;
+    }
+    #testimonials h2.card.testi-heading {
+        margin-top: 0px ;
+        margin-bottom: 0 ;
+        position: relative;
+        top: 162px;
+    }
+
+
+    #video-sec .inner-cont{
+        background-size:cover;
+    }
+
+    #video-sec .object-1{
+        width:135px;
+        top:20%;
+    }
+
+    .video-heading {
+        padding-top: 30px;
+        padding-bottom: 50px;
+    }
+    #videoContainer{
+        height: calc(500px - 140px);
+        margin-bottom: 210px;
+    }
+    .object-3{
+        top: 50px;
+        width: 130px;
+    }
+
+    .object-4 {
+        left: -20px;
+        width: 120px;
+    }
+
+    #faqs-sec{
+        margin-top:-180px;
+    }
+
+    #workplace .inner-cont,
+    #register-sec .inner-cont{
+        background-size:cover;
+    }
+    #workplace .cont-main {
+        padding: 120px 0px 100px 0;
+    }
+    .registration-form .card-body{
+        padding:30px 40px;
+    }
+    .registration-form .form-group:last-child {
+        margin-bottom: 0;
+    }
+    #register-sec p, #contact-sec p {
+        margin: 0 auto 15px auto;
+    }
+    .inner-cont .card.testi-heading.cus-mt-extra{
+        margin-top:-125px !important;
+    }
+
+    .object-5{
+        width:135px;
+        bottom:50px;
+    }
+    #contact-sec hr {
+        width: 70%;
+    }
+
+}
+
+
+@media screen and (min-width:1200px) and (max-width:1539px){
+    .inner-cont{
+        background-size:cover;
+        background-position: 30% 100%;
+    }
+    .cus-img-size{
+        width:100%;
+    }
+
+    .inner-cont .card.testi-heading.cus-mt-extra{
+        margin-top:-85px;
+    }
+    #register-sec h2{
+        padding-bottom:0;
+    }
+    #register-sec .cont-main, #contact-sec .cont-main{
+        padding:25px 0;
+    }
+
+}
+
+@media screen and (max-width: 768px){
+
+    .forrun-heading{
+        font-size:18px;
+        margin-top:12px;
+    }
+    .light-para{
+        font-size:14px;
+        margin:12px 0 15px;
+    }
+    .sec-mobiles{
+        margin-top:10px;
+        margin-bottom:10px;
+    }
+    .sec-mobiles img{
+        width: 85%;
+        margin: 0 auto;
+        display: table;
+    }
+
+    .mb-app-img {
+        float: left;
+        width: 50%;
+    }
+
+    .mb-app-img img {
+        float: left;
+        width: 100%;
+    }
+
+
+    .faq {
+        margin-bottom: 30px;
+    }
+    #workplace .inner-cont{
+        padding:25px 0;
+    }
+    .copyrights,
+    .footer-links {
+        text-align: center;
+        float: none;
+    }
+    .footer-links ul{
+        padding-left:0;
+    }
+    .social-icons{
+        margin-top:15px;
+        margin-bottom:15px;
+    }
+
+}
+
+
+@media screen and (min-width:1200px) and (max-width:1370px){
+    body main#main{
+        margin-top:0px;
+    }
+
+    .sec-txt {
+        margin-top: -35px;
+    }
+    .sec-mobiles{
+        margin-top:-95px;
+    }
+}
+
+
+@media screen and (max-width:992px){
+    #flipFlop.modal{
+        top:20%;
+    }
+}
+
+@media screen and (min-width: 576px){
+
+}
+
+
+/*
+@media (min-height: 768px) and (max-height: 768px)
+and (min-width: 1200px) and (max-width: 1920px){
+    body main#main{
+        margin-top:52px;
+    }
+
+    .sec-txt {
+        margin-top: 20px;
+    }
+    .sec-mobiles{
+        margin-top:-50px;
+    }
+
+}
+*/
+
+
+
+/*Need to remove*/
+/*
+@media (min-device-height: 768px)
+    and (min-device-width: 1200px)
+    and (-webkit-min-device-pixel-ratio: 1){
+
+
+    .sec-txt {
+        margin-top: 20px;
+    }
+    .sec-mobiles{
+        margin-top:-50px;
+    }
+
+
+}
+*/
