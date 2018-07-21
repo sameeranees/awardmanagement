@@ -57,6 +57,7 @@
           </div>
           <button type="submit" class="btn btn-primary btn-lg btn-block"><i class="ft-unlock"></i> {{ __('Login') }}</button>
         </form>
+        <a href="http://local.dysfawards.com/register" >Can't login? Register Now!</a> 
       </div>
     </div>
 @endsection

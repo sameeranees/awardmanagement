@@ -15,6 +15,11 @@ class User extends Authenticatable
         EntrustUserTrait::restore insteadof SoftDeletes;
     }
 
+    public function restore() {
+        $this->sfRestore();
+        Cache::tags(Config::get('entrust.role_user_table'))->flush();
+    }
+
     /**
      * User Types 
      *
