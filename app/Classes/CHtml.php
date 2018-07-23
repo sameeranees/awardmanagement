@@ -333,6 +333,16 @@ HTML;
 				    'Roles' => ['link' => route('roles.index')],
 			    ]
 			],
+			'members'=>[				
+				'label' => 'Application Management',
+				'icon' => 'ft-users',
+		        'link' => '#',
+		        'children' => [
+				    'Members' => ['link' => route('members.index')],
+				    'Degrees' => ['link' => route('degrees.index')],
+				    'Majors' => ['link' => route('majors.index')]
+			    ]
+			]
 		];
 	}
 
