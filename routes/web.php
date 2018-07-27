@@ -26,7 +26,9 @@ Route::group(['middleware' => ['auth', 'web']], function () {
 	
 	Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 	Route::post('users/list', ['as'=>'users.list', 'uses'=>'UsersController@list']);
-	Route::post('members/list', ['as'=>'members.list', 'uses'=>'MemberController@list']);
+	Route::post('members/list', ['as'=>'members.list', 'uses'=>'MembersController@list']);
+	Route::post('degrees/list', ['as'=>'degrees.list', 'uses'=>'DegreesController@list']);
+	Route::post('majors/list', ['as'=>'majors.list', 'uses'=>'MajorsController@list']);
 	Route::resource('users', 'UsersController');
 	Route::resource('roles', 'RolesController');
 	Route::resource('members', 'MembersController');

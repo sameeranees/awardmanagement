@@ -67,8 +67,8 @@
                       {!! Form::label('status', 'Active') !!}
                       {!! Form::switch('status', null, null, ['data-on-label' => 'Yes', 'data-off-label' => 'No']) !!} 
                     -->
-                      {!! Form::label('damno', 'Dhoraji Association Member Number') !!}
-                      {!! Form::text('damno', null, ['class' => 'form-control border-primary', 'placeholder' => 'Dam_No']) !!}
+                      {!! Form::label('dam_no', 'Dhoraji Association Member Number') !!}
+                      {!! Form::text('dam_no', null, ['class' => 'form-control border-primary', 'placeholder' => 'Dam_No']) !!}
                     </div>
                   </div>
                 </div>
@@ -155,7 +155,7 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       {!! Form::label('Degree', 'Degree') !!}
-                      {!! Form::select('Degree',array('C'=>'Choose Degree'),'C',['class' => 'form-control border-primary'] ) !!}
+                      {!! Form::select('degree_id',$degrees,null,['class' => 'form-control border-primary']) !!}
                     </div>
                   </div>
                 </div>
@@ -164,7 +164,7 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       {!! Form::label('Major', 'Major') !!}
-                      {!! Form::select('Major',array('C'=>'Choose Major'),'C',['class' => 'form-control border-primary'] ) !!}
+                      {!! Form::select('majors_id',$majors,null,['class' => 'form-control border-primary']) !!}
                     </div>
                   </div>
                 </div> 

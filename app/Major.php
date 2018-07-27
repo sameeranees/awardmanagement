@@ -7,10 +7,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Member extends Model
+class Major extends Model
 {
-    //
     protected $guarded=[];
+    public $timestamps = false;
     public function setStatusAttribute($value){
         $this->attributes['status'] = $value == 'on' ? 1 : 0;
     }
@@ -18,10 +18,6 @@ class Member extends Model
     public function degree()
     {
         return $this->belongsTo('App\Degree');
-    }
-    public function major()
-    {
-        return $this->belongsTo('App\Major');
     }
     public static function search( $options = [] ) {
 
@@ -36,16 +32,16 @@ class Member extends Model
 
         $query = self::query();
 
+        #/ id
+        if (isset($options['id']) &&  !is_null( $options['id'] ) && $options['id'] != "") {
+            $query = $query->where( 'id', 'LIKE', '%' . $options['id'] . '%' );
+        }
 
         #/ name
-        if (isset($options['first_name']) &&  !is_null( $options['first_name'] ) && $options['first_name'] != "") {
-            $query = $query->where( 'first_name', 'LIKE', '%' . $options['first_name'] . '%' );
+        if (isset($options['majors_name']) &&  !is_null( $options['majors_name'] ) && $options['majors_name'] != "") {
+            $query = $query->where( 'majors_name', 'LIKE', '%' . $options['majors_name'] . '%' );
         }
 
-        if (isset($options['surname']) &&  !is_null( $options['surname'] ) && $options['surname'] != "") {
-            $query = $query->where( 'surname', 'LIKE', '%' . $options['surname'] . '%' );
-        }
-        
 		if (isset($options['degree_name']) &&  !is_null( $options['degree_name'] ) && $options['degree_name'] != "") {
             $query->whereHas('degree', function($query)
 
@@ -55,20 +51,6 @@ class Member extends Model
             });
            
         }
-
-		if (isset($options['majors_name']) &&  !is_null( $options['majors_name'] ) && $options['majors_name'] != "") {
-            $query->whereHas('major', function($query)
-
-            {
-                $query = $query->where( 'majors_name', 'LIKE', '%' . $options['majors_name'] . '%' );
-            });        
-        }
-
-        #/ status
-        if (isset($options['status']) &&  !is_null( $options['status'] ) && $options['status'] != -1) {
-            $query = $query->where( 'status', 'LIKE', '%' . $options['status'] . '%' );
-        }
-
 
         if (!$count = $query->count()) {
             return false;

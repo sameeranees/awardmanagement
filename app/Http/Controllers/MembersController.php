@@ -7,6 +7,8 @@ use App\Member;
 use App\Classes\DataGrid;
 use App\Classes\CHtml;
 use App\Http\Requests\memberRequest;
+use App\Degree;
+use App\Major;
 
 class MembersController extends Controller
 {
@@ -65,14 +67,10 @@ class MembersController extends Controller
         foreach ( $members['result'] as $i => $member) {
             $checked = $member->status ? ' checked=""' : "";
             $data[] = [
-                $member->id,
                 $member->first_name,
                 $member->surname,
-                $member->phone,
-                $member->email,
-                $member->dam_no,
-                $member->degree_name, 
-                $member->majors_name ?: 'N/A',
+                $member->degree->degree_name, 
+                $member->major->majors_name ?: 'N/A',
                 '<input type="checkbox" data-id="'. $member->id .'" class="switch status-chkbx" '. $checked .' data-group-cls="btn-group-sm" data-model="Member" >',//,$member->status,
                 $this->components->groupButton(
                     [
@@ -122,7 +120,10 @@ class MembersController extends Controller
         $section->method = 'POST';
         $section->breadcrumbs = $this->components->breadcrumb(['Members Listing' => route($section->slug.'.index'), $section->title => route($section->slug.'.create')]);
         $section->route = $section->slug.'.store';
-        return view($section->folder.'.form', compact('member', 'section'));
+
+        $degrees = Degree::pluck('degree_name','id');
+        $majors = Major::pluck('majors_name','id');
+        return view($section->folder.'.form', compact('member', 'section', 'degrees', 'majors'));
     }
 
     /**
@@ -133,7 +134,14 @@ class MembersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $section = $this->section;
+        
+    
+        $this->model::create($request->all());
+
+        $request->session()->flash('alert-success', 'Record has been added successfully.');
+        
+        return redirect()->route($section->slug.'.index');
     }
 
     /**
@@ -145,6 +153,7 @@ class MembersController extends Controller
     public function show($id)
     {
         //
+        
     }
 
     /**
@@ -153,7 +162,7 @@ class MembersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Member $member)
     {
         //
         $section = $this->section;
@@ -162,8 +171,9 @@ class MembersController extends Controller
         $section->method = 'PUT';
         $section->breadcrumbs = $this->components->breadcrumb(['Members Listing' => route($section->slug.'.index'), $section->title => route($section->slug.'.edit', $member)]);
         $section->route = [$section->slug.'.update', $member];
-
-        return view($section->folder.'.form', compact('member', 'section'));
+        $degrees = Degree::pluck('degree_name','id');
+        $majors = Major::pluck('majors_name','id');
+        return view($section->folder.'.form', compact('member', 'section', 'degrees', 'majors'));
     }
 
     /**
@@ -173,7 +183,7 @@ class MembersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Member $member)
     {
         //
         $section = $this->section;
@@ -193,7 +203,7 @@ class MembersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Member $member)
     {
         //
         $member->delete();
