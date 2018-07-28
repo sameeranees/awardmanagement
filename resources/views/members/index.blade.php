@@ -33,7 +33,7 @@
                 ->addColumn('Surname', 'surname', 100, true, ['type'=>'text-field' ])
                 //->addColumn('Phone', 'phone', 100, true, ['type'=>'text-field' ])
                 //->addColumn('Email', 'email', 400, true, ['type'=>'text-field' ])
-                //->addColumn('DAM No', 'dam_no', 100, true, ['type'=>'text-field' ])
+                //->addColumn('DAM No', 'damno', 100, true, ['type'=>'text-field' ])
                 ->addColumn('Degree', 'degree_name', 150, true, ['type'=>'text-field' ])
                 ->addColumn('Major', 'majors_name', 150, true, ['type'=>'text-field' ])
                 ->addColumn('Active', 'status', 80, true, ['type'=>'select', 'options' => ["-1"=>'All','0'=>'Inactive','1'=>'Active' ]] )

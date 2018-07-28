@@ -7,6 +7,7 @@ use App\Degree;
 use App\Major;
 use App\Classes\DataGrid;
 use App\Classes\CHtml;
+use App\Http\Requests\MajorRequest;
 
 class MajorsController extends Controller
 {
@@ -74,7 +75,7 @@ class MajorsController extends Controller
                     [
                         [
                             'title'      => 'View',
-                            'url'        => '#',
+                            'url'        => route($section->slug.'.show', $major->id),
                             'icon'       => 'fa fa-eye',
                             'attributes' => [
                                 'class'  => 'btn-success'
@@ -129,7 +130,7 @@ class MajorsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MajorRequest $request)
     {
          $section = $this->section;
         
@@ -147,9 +148,17 @@ class MajorsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Major $major)
     {
         //
+        $section = $this->section;
+        $section->title = 'Major';
+        $section->heading = 'Major';
+        $section->method = 'PUT';
+        $section->breadcrumbs = $this->components->breadcrumb(['Majors Listing' => route($section->slug.'.index'), $section->title => route($section->slug.'.show', $major)]);
+        $section->route = [$section->slug.'.update', $major];
+        $degrees = Degree::pluck('degree_name','id');
+        return view($section->folder.'.form', compact('major', 'section', 'degrees'));
     }
 
     /**
@@ -177,7 +186,7 @@ class MajorsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(MajorRequest $request, $id)
     {
         $section = $this->section;
 

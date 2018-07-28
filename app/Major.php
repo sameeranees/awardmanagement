@@ -15,6 +15,10 @@ class Major extends Model
         $this->attributes['status'] = $value == 'on' ? 1 : 0;
     }
 
+    public function members()
+    {
+        return $this->hasMany('App\Member');
+    }
     public function degree()
     {
         return $this->belongsTo('App\Degree');

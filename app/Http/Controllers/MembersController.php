@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Member;
 use App\Classes\DataGrid;
 use App\Classes\CHtml;
-use App\Http\Requests\memberRequest;
+use App\Http\Requests\MemberRequest;
 use App\Degree;
 use App\Major;
 
@@ -76,7 +76,7 @@ class MembersController extends Controller
                     [
                         [
                             'title'      => 'View',
-                            'url'        => '#',
+                            'url'        => route($section->slug.'.show', $member->id),
                             'icon'       => 'fa fa-eye',
                             'attributes' => [
                                 'class'  => 'btn-success'
@@ -132,7 +132,7 @@ class MembersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MemberRequest $request)
     {
         $section = $this->section;
         
@@ -150,10 +150,18 @@ class MembersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Member $member)
     {
         //
-        
+        $section = $this->section;
+        $section->title = 'Member';
+        $section->heading = 'Member';
+        $section->method = 'PUT';
+        $section->breadcrumbs = $this->components->breadcrumb(['Members Listing' => route($section->slug.'.index'), $section->title => route($section->slug.'.show', $member)]);
+        $section->route = [$section->slug.'.update', $member];
+        $degrees = Degree::pluck('degree_name','id');
+        $majors = Major::pluck('majors_name','id');
+        return view($section->folder.'.form', compact('member', 'section', 'degrees', 'majors'));
     }
 
     /**
@@ -183,7 +191,7 @@ class MembersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Member $member)
+    public function update(MemberRequest $request, Member $member)
     {
         //
         $section = $this->section;

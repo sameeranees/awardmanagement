@@ -7,7 +7,7 @@ use App\Degree;
 use App\Major;
 use App\Classes\DataGrid;
 use App\Classes\CHtml;
-
+use App\Http\Requests\DegreeRequest;
 class DegreesController extends Controller
 {
     private $model, $section, $components;
@@ -71,7 +71,7 @@ class DegreesController extends Controller
                     [
                         [
                             'title'      => 'View',
-                            'url'        => '#',
+                            'url'        => route($section->slug.'.show', $degree->id),
                             'icon'       => 'fa fa-eye',
                             'attributes' => [
                                 'class'  => 'btn-success'
@@ -124,7 +124,7 @@ class DegreesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DegreeRequest $request)
     {
         $section = $this->section;
         
@@ -142,9 +142,17 @@ class DegreesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Degree $degree)
     {
         //
+        $section = $this->section;
+        $section->title = 'Degree';
+        $section->heading = 'Degree';
+        $section->method = 'PUT';
+        $section->breadcrumbs = $this->components->breadcrumb(['Degrees Listing' => route($section->slug.'.index'), $section->title => route($section->slug.'.show', $degree)]);
+        $section->route = [$section->slug.'.update', $degree];
+
+        return view($section->folder.'.form', compact('degree', 'section'));
     }
 
     /**
@@ -172,7 +180,7 @@ class DegreesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(DegreeRequest $request, Degree $degree)
     {
          $section = $this->section;
 
@@ -191,7 +199,7 @@ class DegreesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Degree $degree)
     {
         //
         $degree->delete();

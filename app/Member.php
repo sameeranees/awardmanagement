@@ -21,7 +21,7 @@ class Member extends Model
     }
     public function major()
     {
-        return $this->belongsTo('App\Major');
+        return $this->belongsTo('App\Major','majors_id');
     }
     public static function search( $options = [] ) {
 

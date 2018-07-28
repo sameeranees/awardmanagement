@@ -27,7 +27,6 @@ class CreateUsersTable extends Migration
         Schema::create('members', function (Blueprint $table) {
             $table->increments('id');
             $table->string('first_name');
-            $table->string('form_no');
             $table->string('surname')->unique();
             $table->string('fathers_name');
             $table->string('gender');
@@ -36,18 +35,18 @@ class CreateUsersTable extends Migration
             $table->string('dam_no');
             $table->string('address');
             $table->string('name_of_institute');
-            $table->integer('marks_obtained');
-            $table->integer('total_marks');
-            $table->float('gpa');
-            $table->string('distinctions');
-            $table->integer('passing_year');
-            $table->string('previous_qualifications');
-            $table->integer('A*s');
-            $table->integer('As');
-            $table->integer('Bs');
-            $table->integer('Cs');
-            $table->integer('Ds');
-            $table->integer('Fs');
+            $table->integer('marks_obtained')->nullable();
+            $table->integer('total_marks')->nullable();
+            $table->float('gpa')->nullable();
+            $table->string('distinctions')->nullable();
+            $table->integer('passing_year')->nullable();
+            $table->string('previous_qualifications')->nullable();
+            $table->integer('A*s')->nullable();
+            $table->integer('As')->nullable();
+            $table->integer('Bs')->nullable();
+            $table->integer('Cs')->nullable();
+            $table->integer('Ds')->nullable();
+            $table->integer('Fs')->nullable();
             $table->integer('degree_id')->unsigned();
             $table->integer('majors_id')->unsigned();
             $table->foreign('degree_id')->references('id')->on('degrees')
@@ -59,31 +58,31 @@ class CreateUsersTable extends Migration
         });
         Schema::create('members_family_history', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('relative_name1');
-            $table->string('relative_name2');
-            $table->string('relative_name3');
-            $table->string('relative_name4');
-            $table->string('relative_name5');
-            $table->string('relation_relative1');
-            $table->string('relation_relative2');
-            $table->string('relation_relative3');
-            $table->string('relation_relative4');
-            $table->string('relation_relative5');
-            $table->string('relative_year1');
-            $table->string('relative_year2');
-            $table->string('relative_year3');
-            $table->string('relative_year4');
-            $table->string('relative_year5');
-            $table->string('relative_degree1');
-            $table->string('relative_degree2');
-            $table->string('relative_degree3');
-            $table->string('relative_degree4');
-            $table->string('relative_degree5');
-            $table->string('relative_contact1');
-            $table->string('relative_contact2');
-            $table->string('relative_contact3');
-            $table->string('relative_contact4');
-            $table->string('relative_contact5');
+            $table->string('relative_name1')->nullable();
+            $table->string('relative_name2')->nullable();
+            $table->string('relative_name3')->nullable();
+            $table->string('relative_name4')->nullable();
+            $table->string('relative_name5')->nullable();
+            $table->string('relation_relative1')->nullable();
+            $table->string('relation_relative2')->nullable();
+            $table->string('relation_relative3')->nullable();
+            $table->string('relation_relative4')->nullable();
+            $table->string('relation_relative5')->nullable();
+            $table->string('relative_year1')->nullable();
+            $table->string('relative_year2')->nullable();
+            $table->string('relative_year3')->nullable();
+            $table->string('relative_year4')->nullable();
+            $table->string('relative_year5')->nullable();
+            $table->string('relative_degree1')->nullable();
+            $table->string('relative_degree2')->nullable();
+            $table->string('relative_degree3')->nullable();
+            $table->string('relative_degree4')->nullable();
+            $table->string('relative_degree5')->nullable();
+            $table->string('relative_contact1')->nullable();
+            $table->string('relative_contact2')->nullable();
+            $table->string('relative_contact3')->nullable();
+            $table->string('relative_contact4')->nullable();
+            $table->string('relative_contact5')->nullable();
             $table->string('reference_name1');
             $table->string('reference_name2');
             $table->string('reference_surname1');
@@ -103,8 +102,8 @@ class CreateUsersTable extends Migration
     public function down()
     {
         Schema::dropIfExists('members');
-        Schema::dropIfExists('degrees');
         Schema::dropIfExists('majors');
-        Schema::dropIfExists('history');
+        Schema::dropIfExists('degrees');
+        Schema::dropIfExists('members_family_history');
     }
 }

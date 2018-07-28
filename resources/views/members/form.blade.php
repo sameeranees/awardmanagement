@@ -1,3 +1,4 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 @extends('layouts.app')
 
 @section('title')
@@ -155,7 +156,7 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       {!! Form::label('Degree', 'Degree') !!}
-                      {!! Form::select('degree_id',$degrees,null,['class' => 'form-control border-primary']) !!}
+                      {!! Form::select('degree_id',$degrees,null, ['class' => 'form-control border-primary']) !!}
                     </div>
                   </div>
                 </div>
@@ -164,7 +165,7 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       {!! Form::label('Major', 'Major') !!}
-                      {!! Form::select('majors_id',$majors,null,['class' => 'form-control border-primary']) !!}
+                      {!! Form::select('majors_id',$majors,null, ['class' => 'form-control border-primary']) !!}
                     </div>
                   </div>
                 </div> 
@@ -172,17 +173,17 @@
                     <div class="form-group">
                       {!! Form::label('grades', 'Grades for O/A Levels:') !!}
                       {!! Form::label('A*s', '------A*s') !!}
-                      {!! Form::selectRange('A*s',1,20,['class' => 'form-control border-primary'] ) !!}
+                      {!! Form::selectRange('A*s',0,20,null) !!}
                       {!! Form::label('As', '------As') !!}
-                      {!! Form::selectRange('As',1,20,['class' => 'form-control'] ) !!}
+                      {!! Form::selectRange('As',0,20,null) !!}
                       {!! Form::label('Bs', '------Bs') !!}
-                      {!! Form::selectRange('Bs',1,20,['class' => 'form-control'] ) !!}
+                      {!! Form::selectRange('Bs',0,20,null) !!}
                       {!! Form::label('Cs', '------Cs') !!}
-                      {!! Form::selectRange('Cs',1,20,['class' => 'form-control'] ) !!}
+                      {!! Form::selectRange('Cs',0,20,null) !!}
                       {!! Form::label('Ds', '------Ds') !!}
-                      {!! Form::selectRange('Ds',1,20,['class' => 'form-control'] ) !!}
+                      {!! Form::selectRange('Ds',0,20,null) !!}
                       {!! Form::label('Fs', '------Fs') !!}
-                      {!! Form::selectRange('Fs',1,20,['class' => 'form-control'] ) !!}
+                      {!! Form::selectRange('Fs',0,20,null) !!}
                     </div>
                   </div>
                 <div class="row">
@@ -193,6 +194,356 @@
                     </div>
                   </div>
                 </div>
+
+                <div class="card-header">
+                <h4 class="card-title">Family History</h4>
+                </div>                
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {!! Form::label('formSelect', 'How many of your family members have recieved Academic Excellence award from DYSF?') !!}
+                      {!! Form::selectRange('formSelect',0,5,null,['id'=>'formSelect','class' => 'form-control border-primary'] ) !!}
+                    </div>
+                  </div>
+                </div> 
+
+                <script>
+                  jQuery(function($) {
+                    $('.relative1').hide();
+                    $('.relative2').hide();
+                    $('.relative3').hide();
+                    $('.relative4').hide();
+                    $('.relative5').hide();
+                    $('#formSelect').change(function () {
+                      var val = $(this).val();
+                      if(val==='1'){
+                        $('.relative1').show();
+                        $('.relative2').hide();
+                        $('.relative3').hide();
+                        $('.relative4').hide();
+                        $('.relative5').hide();
+                      }
+                      else if(val==='2'){
+                        $('.relative1').show();
+                        $('.relative2').show();
+                        $('.relative3').hide();
+                        $('.relative4').hide();
+                        $('.relative5').hide();
+                      }
+                      else if(val==='3'){
+                        $('.relative1').show();
+                        $('.relative2').show();
+                        $('.relative3').show();
+                        $('.relative4').hide();
+                        $('.relative5').hide();
+                      }
+                      else if(val==='4'){
+                        $('.relative1').show();
+                        $('.relative2').show();
+                        $('.relative3').show();
+                        $('.relative4').show();
+                        $('.relative5').hide();
+                      }
+                      else if (val==='5'){
+                        $('.relative1').show();
+                        $('.relative2').show();
+                        $('.relative3').show();
+                        $('.relative4').show();
+                        $('.relative5').show();
+                      }
+                      else{
+                          $('.relative1').hide();
+                          $('.relative2').hide();
+                          $('.relative3').hide();
+                          $('.relative4').hide();
+                          $('.relative5').hide();
+                      }
+                    });
+                  });
+                </script>
+
+                <div class="relative1">
+                <div class="card-header">
+                <h4 class="card-title">Relative 1</h4>
+                </div>  
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {!! Form::label('relative_name1', 'Name') !!}
+                      {!! Form::text('relative_name1', null, ['class' => 'form-control border-primary', 'placeholder' => 'Name']) !!}
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {!! Form::label('relation_relative1', 'Relation') !!}
+                      {!! Form::text('relation_relative1', null, ['class' => 'form-control border-primary', 'placeholder' => 'Relation']) !!}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {!! Form::label('relative_year1', 'Passing Year') !!}
+                      {!! Form::text('relative_year1', null, ['class' => 'form-control border-primary', 'placeholder' => 'Passing Year']) !!}
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {!! Form::label('relative_degree1', 'Degree') !!}
+                      {!! Form::text('relative_degree1', null, ['class' => 'form-control border-primary', 'placeholder' => 'Degree']) !!}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {!! Form::label('relative_contact1', 'Contact') !!}
+                      {!! Form::text('relative_contact1', null, ['class' => 'form-control border-primary', 'placeholder' => 'Contact']) !!}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="relative2">  
+                <div class="card-header">
+                <h4 class="card-title">Relative 2</h4>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {!! Form::label('relative_name2', 'Name') !!}
+                      {!! Form::text('relative_name2', null, ['class' => 'form-control border-primary', 'placeholder' => 'Name']) !!}
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {!! Form::label('relation_relative2', 'Relation') !!}
+                      {!! Form::text('relation_relative2', null, ['class' => 'form-control border-primary', 'placeholder' => 'Relation']) !!}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {!! Form::label('relative_year2', 'Passing Year') !!}
+                      {!! Form::text('relative_year2', null, ['class' => 'form-control border-primary', 'placeholder' => 'Passing Year']) !!}
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {!! Form::label('relative_degree2', 'Degree') !!}
+                      {!! Form::text('relative_degree2', null, ['class' => 'form-control border-primary', 'placeholder' => 'Degree']) !!}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {!! Form::label('relative_contact2', 'Contact') !!}
+                      {!! Form::text('relative_contact2', null, ['class' => 'form-control border-primary', 'placeholder' => 'Contact']) !!}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="relative3">
+              <div class="card-header">
+                <h4 class="card-title">Relative 3</h4>
+                </div>  
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {!! Form::label('relative_name3', 'Name') !!}
+                      {!! Form::text('relative_name3', null, ['class' => 'form-control border-primary', 'placeholder' => 'Name']) !!}
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {!! Form::label('relation_relative3', 'Relation') !!}
+                      {!! Form::text('relation_relative3', null, ['class' => 'form-control border-primary', 'placeholder' => 'Relation']) !!}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {!! Form::label('relative_year3', 'Passing Year') !!}
+                      {!! Form::text('relative_year3', null, ['class' => 'form-control border-primary', 'placeholder' => 'Passing Year']) !!}
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {!! Form::label('relative_degree3', 'Degree') !!}
+                      {!! Form::text('relative_degree3', null, ['class' => 'form-control border-primary', 'placeholder' => 'Degree']) !!}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {!! Form::label('relative_contact3', 'Contact') !!}
+                      {!! Form::text('relative_contact3', null, ['class' => 'form-control border-primary', 'placeholder' => 'Contact']) !!}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="relative4">
+              <div class="card-header">
+                <h4 class="card-title">Relative 4</h4>
+                </div>  
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {!! Form::label('relative_name4', 'Name') !!}
+                      {!! Form::text('relative_name4', null, ['class' => 'form-control border-primary', 'placeholder' => 'Name']) !!}
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {!! Form::label('relation_relative4', 'Relation') !!}
+                      {!! Form::text('relation_relative4', null, ['class' => 'form-control border-primary', 'placeholder' => 'Relation']) !!}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {!! Form::label('relative_year4', 'Passing Year') !!}
+                      {!! Form::text('relative_year4', null, ['class' => 'form-control border-primary', 'placeholder' => 'Passing Year']) !!}
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {!! Form::label('relative_degree4', 'Degree') !!}
+                      {!! Form::text('relative_degree4', null, ['class' => 'form-control border-primary', 'placeholder' => 'Degree']) !!}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {!! Form::label('relative_contact4', 'Contact') !!}
+                      {!! Form::text('relative_contact4', null, ['class' => 'form-control border-primary', 'placeholder' => 'Contact']) !!}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="relative5">
+              <div class="card-header">
+                <h4 class="card-title">Relative 5</h4>
+                </div>  
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {!! Form::label('relative_name5', 'Name') !!}
+                      {!! Form::text('relative_name5', null, ['class' => 'form-control border-primary', 'placeholder' => 'Name']) !!}
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {!! Form::label('relation_relative5', 'Relation') !!}
+                      {!! Form::text('relation_relative5', null, ['class' => 'form-control border-primary', 'placeholder' => 'Relation']) !!}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {!! Form::label('relative_year5', 'Passing Year') !!}
+                      {!! Form::text('relative_year5', null, ['class' => 'form-control border-primary', 'placeholder' => 'Passing Year']) !!}
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {!! Form::label('relative_degree5', 'Degree') !!}
+                      {!! Form::text('relative_degree5', null, ['class' => 'form-control border-primary', 'placeholder' => 'Degree']) !!}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {!! Form::label('relative_contact5', 'Contact') !!}
+                      {!! Form::text('relative_contact5', null, ['class' => 'form-control border-primary', 'placeholder' => 'Contact']) !!}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="card-header">
+              <h4 class="card-title">References</h4>
+              </div>
+
+              <div class="card-header">
+              <h4 class="card-title">Reference 1</h4>
+              </div>
+
+              <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {!! Form::label('reference_name1', 'Name') !!}
+                      {!! Form::text('reference_name1', null, ['class' => 'form-control border-primary', 'placeholder' => 'Name']) !!}
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {!! Form::label('reference_surname1', 'Surname') !!}
+                      {!! Form::text('reference_surname1', null, ['class' => 'form-control border-primary', 'placeholder' => 'Surname']) !!}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {!! Form::label('reference_address1', 'Address') !!}
+                      {!! Form::textarea('reference_address1', null, ['class' => 'form-control border-primary','rows'=>2,'cols'=>4, 'placeholder' => 'Address']) !!}
+                    </div>
+                  </div> 
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {!! Form::label('reference_phone1', 'Phone') !!}
+                      {!! Form::text('reference_phone1', null, ['class' => 'form-control border-primary', 'placeholder' => 'Phone']) !!}
+                    </div>
+                  </div>
+                </div>
+
+              <div class="card-header">
+              <h4 class="card-title">Reference 2</h4>
+              </div>
+
+              <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {!! Form::label('reference_name2', 'Name') !!}
+                      {!! Form::text('reference_name2', null, ['class' => 'form-control border-primary', 'placeholder' => 'Name']) !!}
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {!! Form::label('reference_surname2', 'Surname') !!}
+                      {!! Form::text('reference_surname2', null, ['class' => 'form-control border-primary', 'placeholder' => 'Surname']) !!}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {!! Form::label('reference_address2', 'Address') !!}
+                      {!! Form::textarea('reference_address2', null, ['class' => 'form-control border-primary','rows'=>2,'cols'=>4, 'placeholder' => 'Address']) !!}
+                    </div>
+                  </div> 
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {!! Form::label('reference_phone2', 'Phone') !!}
+                      {!! Form::text('reference_phone2', null, ['class' => 'form-control border-primary', 'placeholder' => 'Phone']) !!}
+                    </div>
+                  </div>
+                </div>
+
             </div>
               <div class="form-actions right">
                 {!! Form::button(' <i class="ft-x"></i></i> Cancel', ['class' => 'btn btn-warning mr-1']) !!}
