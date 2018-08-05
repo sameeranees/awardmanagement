@@ -19,6 +19,7 @@
           <div class="heading-elements">
             <div class="btn-group">
               <a href="{{ route($section->slug.'.create') }}" class="btn btn-info">Create</a>
+              <a href="{{ route($section->slug.'.print') }}" class="btn btn-info">Print Seats</a>
             </div>
           </div>
         </div>
@@ -28,16 +29,16 @@
             {!!
                 App\Classes\DataGrid::instance($section->slug, null, true)
                 ->bind(route($section->slug.'.list'))
-                //->addColumn('ID', 'id', 100, true, ['type'=>'text-field'])
+                ->addColumn('Seat No', 'seat_no', 100, true, ['type'=>'text-field'])
                 ->addColumn('Name', 'first_name', 150, true, ['type'=>'text-field'])
                 ->addColumn('Surname', 'surname', 100, true, ['type'=>'text-field' ])
                 //->addColumn('Phone', 'phone', 100, true, ['type'=>'text-field' ])
                 //->addColumn('Email', 'email', 400, true, ['type'=>'text-field' ])
                 //->addColumn('DAM No', 'damno', 100, true, ['type'=>'text-field' ])
-                ->addColumn('Degree', 'degree_id', 150, true, ['type'=>'text-field' ])
-                ->addColumn('Major', 'majors_id', 150, true, ['type'=>'text-field' ])
-                ->addColumn('Active', 'status', 80, true, ['type'=>'select', 'options' => ["-1"=>'All','0'=>'Inactive','1'=>'Active' ]] )
-                ->addColumn('Actions', '', 50, false, ['type' => 'search-reset'])
+                ->addColumn('Degree', 'degree_name', 150, true, ['type'=>'text-field' ])
+                ->addColumn('Major', 'majors_name', 150, true, ['type'=>'text-field' ])
+                //->addColumn('Active', 'status', 80, true, ['type'=>'select', 'options' => ["-1"=>'All','0'=>'Inactive','1'=>'Active' ]] )
+                //->addColumn('Actions', '', 50, false, ['type' => 'search-reset'])
                 ->sortColumn(0, true)
                 ->pagination(25, 'simple_numbers')
                 ->getHtml()

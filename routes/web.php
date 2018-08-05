@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 //Route::get('/', 'FrontEndController@index')->name('frontend.index');
 
 Auth::routes();
@@ -29,6 +30,9 @@ Route::group(['middleware' => ['auth', 'web']], function () {
 	Route::post('members/list', ['as'=>'members.list', 'uses'=>'MembersController@list']);
 	Route::post('degrees/list', ['as'=>'degrees.list', 'uses'=>'DegreesController@list']);
 	Route::post('majors/list', ['as'=>'majors.list', 'uses'=>'MajorsController@list']);
+	Route::post('seats/list', ['as'=>'seats.list', 'uses'=>'SeatsController@list']);
+	Route::get('seats/print','SeatsController@print');
+	Route::resource('seats', 'SeatsController');
 	Route::resource('users', 'UsersController');
 	Route::resource('roles', 'RolesController');
 	Route::resource('members', 'MembersController');

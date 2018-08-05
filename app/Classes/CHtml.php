@@ -340,7 +340,8 @@ HTML;
 		        'children' => [
 				    'Members' => ['link' => route('members.index')],
 				    'Degrees' => ['link' => route('degrees.index')],
-				    'Majors' => ['link' => route('majors.index')]
+				    'Majors' => ['link' => route('majors.index')],
+				    'Seats' => ['link' => route('seats.index')]
 			    ]
 			]
 		];

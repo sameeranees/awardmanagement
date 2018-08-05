@@ -23,7 +23,8 @@ class MemberRequest extends FormRequest
      */
     public function rules()
     {
-        switch ( strtoupper(request()->_method) ) {
+        $rules = [];
+        /*switch ( strtoupper(request()->_method) ) {
 
             case 'PUT':
                 $rules = [
@@ -83,7 +84,7 @@ class MemberRequest extends FormRequest
                 ];
                 break;
 
-        }
+        }*/
         return $rules;
     }
 }

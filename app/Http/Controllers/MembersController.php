@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Member;
 use App\Classes\DataGrid;
 use App\Classes\CHtml;
 use App\Http\Requests\MemberRequest;
 use App\Degree;
 use App\Major;
+use App\MembersFamilyHistory;
 
 class MembersController extends Controller
 {
@@ -123,7 +125,22 @@ class MembersController extends Controller
 
         $degrees = Degree::pluck('degree_name','id');
         $majors = Major::pluck('majors_name','id');
-        return view($section->folder.'.form', compact('member', 'section', 'degrees', 'majors'));
+        $memberhis = new \stdClass();
+        for($i = 1; $i <= 5; $i++) {
+            $memberhis->{"relative_name$i"} = null;
+            $memberhis->{"relation_relative$i"} = null;
+            $memberhis->{"relative_year$i"} = null;
+            $memberhis->{"relative_degree$i"} = null;
+            $memberhis->{"relative_contact$i"} = null;
+        }
+        for($i = 1; $i <= 2; $i++) {
+            $memberhis->{"reference_name$i"} = null;
+            $memberhis->{"reference_surname$i"} = null;
+            $memberhis->{"reference_address$i"} = null;
+            $memberhis->{"reference_phone$i"} = null;
+        }
+        $formSelect=0;
+        return view($section->folder.'.form', compact('formSelect','memberhis','member', 'section', 'degrees', 'majors'));
     }
 
     /**
@@ -136,8 +153,18 @@ class MembersController extends Controller
     {
         $section = $this->section;
         
-    
-        $this->model::create($request->all());
+        //dd($request->relatives);
+        $member = $this->model::create($request->all());
+        //$memberhis = new MembersFamilyHistory();
+        //$memberhis->member()->associate($request->relatives);
+        //$member_id=$member->id;
+        //array_push($request->relatives,array('member_id'=>$member_id));
+        //dd($request->relatives);
+        $relatives=array($request->relatives);
+        $member->family_historys()->createMany($relatives);
+        //$memberhis->create();
+        //MembersFamilyHistory::
+        //zattach($request->all());
 
         $request->session()->flash('alert-success', 'Record has been added successfully.');
         
@@ -161,7 +188,10 @@ class MembersController extends Controller
         $section->route = [$section->slug.'.update', $member];
         $degrees = Degree::pluck('degree_name','id');
         $majors = Major::pluck('majors_name','id');
-        return view($section->folder.'.form', compact('member', 'section', 'degrees', 'majors'));
+        $memberhis=DB::table('members_family_history')->where([['member_id', '=', $member->id]])->first();
+        //dd($memberhis);
+        $formSelect=5;
+        return view($section->folder.'.form', compact('formSelect','memberhis','member', 'section', 'degrees', 'majors'));
     }
 
     /**
@@ -181,7 +211,9 @@ class MembersController extends Controller
         $section->route = [$section->slug.'.update', $member];
         $degrees = Degree::pluck('degree_name','id');
         $majors = Major::pluck('majors_name','id');
-        return view($section->folder.'.form', compact('member', 'section', 'degrees', 'majors'));
+        $memberhis=DB::table('members_family_history')->where([['member_id', '=', $member->id]])->first();
+        $formSelect=5;
+        return view($section->folder.'.form', compact('formSelect','memberhis','member', 'section', 'degrees', 'majors'));
     }
 
     /**

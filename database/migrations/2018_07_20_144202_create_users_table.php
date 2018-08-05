@@ -27,13 +27,14 @@ class CreateUsersTable extends Migration
         Schema::create('members', function (Blueprint $table) {
             $table->increments('id');
             $table->string('first_name');
-            $table->string('surname')->unique();
+            $table->string('surname');
             $table->string('fathers_name');
             $table->string('gender');
             $table->string('phone');
             $table->string('email');
             $table->string('dam_no');
             $table->string('address');
+            $table->unique(['first_name','surname','dam_no']);
             $table->string('name_of_institute');
             $table->integer('marks_obtained')->nullable();
             $table->integer('total_marks')->nullable();

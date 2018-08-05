@@ -166,9 +166,15 @@
                     <div class="form-group">
                       {!! Form::label('Major', 'Major') !!}
                       {!! Form::select('majors_id',$majors,null, ['class' => 'form-control border-primary']) !!}
+                   </div>
+                 </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {!! Form::label('DYSF Scholar', 'DYSF Scholar') !!}
+                      {!! Form::switch('dysf_scholar', null, 0, ['data-on-label' => 'Yes', 'data-off-label' => 'No']) !!}
                     </div>
                   </div>
-                </div> 
+                </div>
                   <div class="row">
                     <div class="form-group">
                       {!! Form::label('grades', 'Grades for O/A Levels:') !!}
@@ -190,11 +196,12 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       {!! Form::label('status', 'Active') !!}
-                      {!! Form::switch('status', null, null, ['data-on-label' => 'Accepted', 'data-off-label' => 'On Hold']) !!}
+                      {!! Form::switch('status', null, 0, ['data-on-label' => 'Accepted', 'data-off-label' => 'On Hold']) !!}
                     </div>
                   </div>
-                </div>
 
+                </div>
+                <hr>
                 <div class="card-header">
                 <h4 class="card-title">Family History</h4>
                 </div>                
@@ -202,18 +209,21 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       {!! Form::label('formSelect', 'How many of your family members have recieved Academic Excellence award from DYSF?') !!}
-                      {!! Form::selectRange('formSelect',0,5,null,['id'=>'formSelect','class' => 'form-control border-primary'] ) !!}
+                      {!! Form::selectRange('formSelect',0,5,$formSelect,['id'=>'formSelect','class' => 'form-control border-primary'] ) !!}
                     </div>
                   </div>
                 </div> 
-
+                <hr>
                 <script>
                   jQuery(function($) {
-                    $('.relative1').hide();
-                    $('.relative2').hide();
-                    $('.relative3').hide();
-                    $('.relative4').hide();
-                    $('.relative5').hide();
+                    var data = <?=$formSelect?>;
+                    if(data===0){
+                      $('.relative1').hide();
+                      $('.relative2').hide();
+                      $('.relative3').hide();
+                      $('.relative4').hide();
+                      $('.relative5').hide();
+                    }
                     $('#formSelect').change(function () {
                       var val = $(this).val();
                       if(val==='1'){
@@ -270,13 +280,13 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       {!! Form::label('relative_name1', 'Name') !!}
-                      {!! Form::text('relative_name1', null, ['class' => 'form-control border-primary', 'placeholder' => 'Name']) !!}
+                      {!! Form::text('relatives[relative_name1]', $memberhis->relative_name1, ['class' => 'form-control border-primary', 'placeholder' => 'Name']) !!}
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       {!! Form::label('relation_relative1', 'Relation') !!}
-                      {!! Form::text('relation_relative1', null, ['class' => 'form-control border-primary', 'placeholder' => 'Relation']) !!}
+                      {!! Form::text('relatives[relation_relative1]', $memberhis->relation_relative1, ['class' => 'form-control border-primary', 'placeholder' => 'Relation']) !!}
                     </div>
                   </div>
                 </div>
@@ -284,13 +294,13 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       {!! Form::label('relative_year1', 'Passing Year') !!}
-                      {!! Form::text('relative_year1', null, ['class' => 'form-control border-primary', 'placeholder' => 'Passing Year']) !!}
+                      {!! Form::text('relatives[relative_year1]', $memberhis->relative_year1, ['class' => 'form-control border-primary', 'placeholder' => 'Passing Year']) !!}
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       {!! Form::label('relative_degree1', 'Degree') !!}
-                      {!! Form::text('relative_degree1', null, ['class' => 'form-control border-primary', 'placeholder' => 'Degree']) !!}
+                      {!! Form::text('relatives[relative_degree1]', $memberhis->relative_degree1, ['class' => 'form-control border-primary', 'placeholder' => 'Degree']) !!}
                     </div>
                   </div>
                 </div>
@@ -298,7 +308,7 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       {!! Form::label('relative_contact1', 'Contact') !!}
-                      {!! Form::text('relative_contact1', null, ['class' => 'form-control border-primary', 'placeholder' => 'Contact']) !!}
+                      {!! Form::text('relatives[relative_contact1]', $memberhis->relative_contact1, ['class' => 'form-control border-primary', 'placeholder' => 'Contact']) !!}
                     </div>
                   </div>
                 </div>
@@ -312,13 +322,13 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       {!! Form::label('relative_name2', 'Name') !!}
-                      {!! Form::text('relative_name2', null, ['class' => 'form-control border-primary', 'placeholder' => 'Name']) !!}
+                      {!! Form::text('relatives[relative_name2]', $memberhis->relative_name2, ['class' => 'form-control border-primary', 'placeholder' => 'Name']) !!}
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       {!! Form::label('relation_relative2', 'Relation') !!}
-                      {!! Form::text('relation_relative2', null, ['class' => 'form-control border-primary', 'placeholder' => 'Relation']) !!}
+                      {!! Form::text('relatives[relation_relative2]', $memberhis->relation_relative2, ['class' => 'form-control border-primary', 'placeholder' => 'Relation']) !!}
                     </div>
                   </div>
                 </div>
@@ -326,13 +336,13 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       {!! Form::label('relative_year2', 'Passing Year') !!}
-                      {!! Form::text('relative_year2', null, ['class' => 'form-control border-primary', 'placeholder' => 'Passing Year']) !!}
+                      {!! Form::text('relatives[relative_year2]', $memberhis->relative_year2, ['class' => 'form-control border-primary', 'placeholder' => 'Passing Year']) !!}
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       {!! Form::label('relative_degree2', 'Degree') !!}
-                      {!! Form::text('relative_degree2', null, ['class' => 'form-control border-primary', 'placeholder' => 'Degree']) !!}
+                      {!! Form::text('relatives[relative_degree2]', $memberhis->relative_degree2, ['class' => 'form-control border-primary', 'placeholder' => 'Degree']) !!}
                     </div>
                   </div>
                 </div>
@@ -340,7 +350,7 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       {!! Form::label('relative_contact2', 'Contact') !!}
-                      {!! Form::text('relative_contact2', null, ['class' => 'form-control border-primary', 'placeholder' => 'Contact']) !!}
+                      {!! Form::text('relatives[relative_contact2]', $memberhis->relative_contact2, ['class' => 'form-control border-primary', 'placeholder' => 'Contact']) !!}
                     </div>
                   </div>
                 </div>
@@ -354,13 +364,13 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       {!! Form::label('relative_name3', 'Name') !!}
-                      {!! Form::text('relative_name3', null, ['class' => 'form-control border-primary', 'placeholder' => 'Name']) !!}
+                      {!! Form::text('relatives[relative_name3]', $memberhis->relative_name3, ['class' => 'form-control border-primary', 'placeholder' => 'Name']) !!}
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       {!! Form::label('relation_relative3', 'Relation') !!}
-                      {!! Form::text('relation_relative3', null, ['class' => 'form-control border-primary', 'placeholder' => 'Relation']) !!}
+                      {!! Form::text('relatives[relation_relative3]', $memberhis->relation_relative3, ['class' => 'form-control border-primary', 'placeholder' => 'Relation']) !!}
                     </div>
                   </div>
                 </div>
@@ -368,13 +378,13 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       {!! Form::label('relative_year3', 'Passing Year') !!}
-                      {!! Form::text('relative_year3', null, ['class' => 'form-control border-primary', 'placeholder' => 'Passing Year']) !!}
+                      {!! Form::text('relatives[relative_year3]', $memberhis->relative_year3, ['class' => 'form-control border-primary', 'placeholder' => 'Passing Year']) !!}
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       {!! Form::label('relative_degree3', 'Degree') !!}
-                      {!! Form::text('relative_degree3', null, ['class' => 'form-control border-primary', 'placeholder' => 'Degree']) !!}
+                      {!! Form::text('relatives[relative_degree3]', $memberhis->relative_degree3, ['class' => 'form-control border-primary', 'placeholder' => 'Degree']) !!}
                     </div>
                   </div>
                 </div>
@@ -382,7 +392,7 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       {!! Form::label('relative_contact3', 'Contact') !!}
-                      {!! Form::text('relative_contact3', null, ['class' => 'form-control border-primary', 'placeholder' => 'Contact']) !!}
+                      {!! Form::text('relatives[relative_contact3]', $memberhis->relative_contact3, ['class' => 'form-control border-primary', 'placeholder' => 'Contact']) !!}
                     </div>
                   </div>
                 </div>
@@ -396,13 +406,13 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       {!! Form::label('relative_name4', 'Name') !!}
-                      {!! Form::text('relative_name4', null, ['class' => 'form-control border-primary', 'placeholder' => 'Name']) !!}
+                      {!! Form::text('relatives[relative_name4]', $memberhis->relative_name4, ['class' => 'form-control border-primary', 'placeholder' => 'Name']) !!}
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       {!! Form::label('relation_relative4', 'Relation') !!}
-                      {!! Form::text('relation_relative4', null, ['class' => 'form-control border-primary', 'placeholder' => 'Relation']) !!}
+                      {!! Form::text('relatives[relation_relative4]', $memberhis->relation_relative4, ['class' => 'form-control border-primary', 'placeholder' => 'Relation']) !!}
                     </div>
                   </div>
                 </div>
@@ -410,13 +420,13 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       {!! Form::label('relative_year4', 'Passing Year') !!}
-                      {!! Form::text('relative_year4', null, ['class' => 'form-control border-primary', 'placeholder' => 'Passing Year']) !!}
+                      {!! Form::text('relatives[relative_year4]', $memberhis->relative_year4, ['class' => 'form-control border-primary', 'placeholder' => 'Passing Year']) !!}
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       {!! Form::label('relative_degree4', 'Degree') !!}
-                      {!! Form::text('relative_degree4', null, ['class' => 'form-control border-primary', 'placeholder' => 'Degree']) !!}
+                      {!! Form::text('relatives[relative_degree4]', $memberhis->relative_degree4, ['class' => 'form-control border-primary', 'placeholder' => 'Degree']) !!}
                     </div>
                   </div>
                 </div>
@@ -424,7 +434,7 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       {!! Form::label('relative_contact4', 'Contact') !!}
-                      {!! Form::text('relative_contact4', null, ['class' => 'form-control border-primary', 'placeholder' => 'Contact']) !!}
+                      {!! Form::text('relatives[relative_contact4]', $memberhis->relative_contact4, ['class' => 'form-control border-primary', 'placeholder' => 'Contact']) !!}
                     </div>
                   </div>
                 </div>
@@ -438,13 +448,13 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       {!! Form::label('relative_name5', 'Name') !!}
-                      {!! Form::text('relative_name5', null, ['class' => 'form-control border-primary', 'placeholder' => 'Name']) !!}
+                      {!! Form::text('relatives[relative_name5]', $memberhis->relative_name5, ['class' => 'form-control border-primary', 'placeholder' => 'Name']) !!}
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       {!! Form::label('relation_relative5', 'Relation') !!}
-                      {!! Form::text('relation_relative5', null, ['class' => 'form-control border-primary', 'placeholder' => 'Relation']) !!}
+                      {!! Form::text('relatives[relation_relative5]', $memberhis->relation_relative5, ['class' => 'form-control border-primary', 'placeholder' => 'Relation']) !!}
                     </div>
                   </div>
                 </div>
@@ -452,13 +462,13 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       {!! Form::label('relative_year5', 'Passing Year') !!}
-                      {!! Form::text('relative_year5', null, ['class' => 'form-control border-primary', 'placeholder' => 'Passing Year']) !!}
+                      {!! Form::text('relatives[relative_year5]', $memberhis->relative_year5, ['class' => 'form-control border-primary', 'placeholder' => 'Passing Year']) !!}
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       {!! Form::label('relative_degree5', 'Degree') !!}
-                      {!! Form::text('relative_degree5', null, ['class' => 'form-control border-primary', 'placeholder' => 'Degree']) !!}
+                      {!! Form::text('relatives[relative_degree5]', $memberhis->relative_degree5, ['class' => 'form-control border-primary', 'placeholder' => 'Degree']) !!}
                     </div>
                   </div>
                 </div>
@@ -466,7 +476,7 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       {!! Form::label('relative_contact5', 'Contact') !!}
-                      {!! Form::text('relative_contact5', null, ['class' => 'form-control border-primary', 'placeholder' => 'Contact']) !!}
+                      {!! Form::text('relatives[relative_contact5]', $memberhis->relative_contact5, ['class' => 'form-control border-primary', 'placeholder' => 'Contact']) !!}
                     </div>
                   </div>
                 </div>
@@ -483,14 +493,14 @@
               <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      {!! Form::label('reference_name1', 'Name') !!}
-                      {!! Form::text('reference_name1', null, ['class' => 'form-control border-primary', 'placeholder' => 'Name']) !!}
+                      {!! Form::label('referencefggth1', 'Name') !!}
+                      {!! Form::text('relatives[reference_name1]', $memberhis->reference_name1, ['class' => 'form-control border-primary', 'placeholder' => 'Name']) !!}
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       {!! Form::label('reference_surname1', 'Surname') !!}
-                      {!! Form::text('reference_surname1', null, ['class' => 'form-control border-primary', 'placeholder' => 'Surname']) !!}
+                      {!! Form::text('relatives[reference_surname1]', $memberhis->reference_surname1, ['class' => 'form-control border-primary', 'placeholder' => 'Surname']) !!}
                     </div>
                   </div>
                 </div>
@@ -499,13 +509,13 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       {!! Form::label('reference_address1', 'Address') !!}
-                      {!! Form::textarea('reference_address1', null, ['class' => 'form-control border-primary','rows'=>2,'cols'=>4, 'placeholder' => 'Address']) !!}
+                      {!! Form::textarea('relatives[reference_address1]', $memberhis->reference_address1, ['class' => 'form-control border-primary','rows'=>2,'cols'=>4, 'placeholder' => 'Address']) !!}
                     </div>
                   </div> 
                   <div class="col-md-6">
                     <div class="form-group">
                       {!! Form::label('reference_phone1', 'Phone') !!}
-                      {!! Form::text('reference_phone1', null, ['class' => 'form-control border-primary', 'placeholder' => 'Phone']) !!}
+                      {!! Form::text('relatives[reference_phone1]', $memberhis->reference_phone1, ['class' => 'form-control border-primary', 'placeholder' => 'Phone']) !!}
                     </div>
                   </div>
                 </div>
@@ -518,13 +528,13 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       {!! Form::label('reference_name2', 'Name') !!}
-                      {!! Form::text('reference_name2', null, ['class' => 'form-control border-primary', 'placeholder' => 'Name']) !!}
+                      {!! Form::text('relatives[reference_name2]', $memberhis->reference_name2, ['class' => 'form-control border-primary', 'placeholder' => 'Name']) !!}
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       {!! Form::label('reference_surname2', 'Surname') !!}
-                      {!! Form::text('reference_surname2', null, ['class' => 'form-control border-primary', 'placeholder' => 'Surname']) !!}
+                      {!! Form::text('relatives[reference_surname2]', $memberhis->reference_surname2, ['class' => 'form-control border-primary', 'placeholder' => 'Surname']) !!}
                     </div>
                   </div>
                 </div>
@@ -533,13 +543,13 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       {!! Form::label('reference_address2', 'Address') !!}
-                      {!! Form::textarea('reference_address2', null, ['class' => 'form-control border-primary','rows'=>2,'cols'=>4, 'placeholder' => 'Address']) !!}
+                      {!! Form::textarea('relatives[reference_address2]', $memberhis->reference_address2, ['class' => 'form-control border-primary','rows'=>2,'cols'=>4, 'placeholder' => 'Address']) !!}
                     </div>
                   </div> 
                   <div class="col-md-6">
                     <div class="form-group">
                       {!! Form::label('reference_phone2', 'Phone') !!}
-                      {!! Form::text('reference_phone2', null, ['class' => 'form-control border-primary', 'placeholder' => 'Phone']) !!}
+                      {!! Form::text('relatives[reference_phone2]', $memberhis->reference_phone2, ['class' => 'form-control border-primary', 'placeholder' => 'Phone']) !!}
                     </div>
                   </div>
                 </div>

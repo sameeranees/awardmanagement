@@ -3,14 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Zizaco\Entrust\Traits\EntrustUserTrait;
+
+//use Illuminate\Foundation\Auth\User as Authenticatable;
+//use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Member extends Model
 {
     //
-    protected $guarded=[];
+    protected $guarded=['formSelect','relatives','year'];
     public function setStatusAttribute($value){
         $this->attributes['status'] = $value == 'on' ? 1 : 0;
     }
@@ -22,6 +23,13 @@ class Member extends Model
     public function major()
     {
         return $this->belongsTo('App\Major','majors_id');
+    }
+    /**
+     * Get the comments for the blog post.
+     */
+    public function family_historys()
+    {
+        return $this->hasMany('App\MembersFamilyHistory');
     }
     public static function search( $options = [] ) {
 
