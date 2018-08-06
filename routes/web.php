@@ -21,6 +21,7 @@ Route::get('/', function () {
 Auth::routes();
 
  Route::get('/home', 'HomeController@index')->name('home');
+
 Route::group(['middleware' => ['auth', 'web']], function () {
 
 	Route::post('change-status', 'Controller@changeStatus')->name('change-status');
@@ -31,12 +32,12 @@ Route::group(['middleware' => ['auth', 'web']], function () {
 	Route::post('degrees/list', ['as'=>'degrees.list', 'uses'=>'DegreesController@list']);
 	Route::post('majors/list', ['as'=>'majors.list', 'uses'=>'MajorsController@list']);
 	Route::post('seats/list', ['as'=>'seats.list', 'uses'=>'SeatsController@list']);
-	Route::get('seats/print','SeatsController@print');
+	Route::get('seats/print', ['as'=>'seats.print', 'uses'=>'SeatsController@print']);
 	Route::resource('seats', 'SeatsController');
 	Route::resource('users', 'UsersController');
 	Route::resource('roles', 'RolesController');
 	Route::resource('members', 'MembersController');
 	Route::resource('degrees', 'DegreesController');
 	Route::resource('majors', 'MajorsController');
-
+	Route::resource('year', 'YearController');
 });

@@ -29,6 +29,7 @@
             {!!
                 App\Classes\DataGrid::instance($section->slug, null, true)
                 ->bind(route($section->slug.'.list'))
+                ->addColumn('ID', 'id', 100, true, ['type'=>'text-field'])
                 ->addColumn('Seat No', 'seat_no', 100, true, ['type'=>'text-field'])
                 ->addColumn('Name', 'first_name', 150, true, ['type'=>'text-field'])
                 ->addColumn('Surname', 'surname', 100, true, ['type'=>'text-field' ])

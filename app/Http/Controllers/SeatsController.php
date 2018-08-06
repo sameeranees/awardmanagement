@@ -53,11 +53,11 @@ class SeatsController extends Controller
 
     public function print(Request $request){
         $section = $this->section;
-        $members= DB::table('members')->select('seat_no','first_name','surname','degree_id')->get();
-        $number=DB::table('members')->select('seat_no','first_name','surname','degree_id')->count();
-        $member=Member::pluck('degree_id');
-        $degree= DB::table('degrees')->whereIn('id',$member)->pluck('degree_name')->toArray();
-        return view($section->folder.'.print', compact('degree','members', 'section','number'));  
+        $members= DB::table('members')->join('degrees', 'members.degree_id', '=', 'degrees.id')->select('members.seat_no','members.first_name','members.surname','degrees.degree_name')->orderBy('seat_no','asc')->get();
+        $section->method = 'POST';
+        $members=$members->sortBy('seat_no', SORT_NATURAL);
+        $section->breadcrumbs = $this->components->breadcrumb(['Seats' => route($section->slug.'.print')]);
+        return view($section->folder.'.print', compact('members', 'section'));  
     }
     public function store(Request $request)
     {
@@ -111,6 +111,7 @@ class SeatsController extends Controller
 
         foreach ( $members['result'] as $i => $member) {
             $data[] = [
+                $member->id,
             	$member->seat_no,
                 $member->first_name,
                 $member->surname,
