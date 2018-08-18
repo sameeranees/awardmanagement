@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddYearToMembers extends Migration
+class CreateMajors extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class AddYearToMembers extends Migration
      */
     public function up()
     {
-        //
-        Schema::table('members', function($table) {
-            $table->string('seat_no',5)->nullable();
+        Schema::create('majors', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('majors_name');
+            $table->integer('degree_id');
         });
     }
 
@@ -26,9 +27,7 @@ class AddYearToMembers extends Migration
      */
     public function down()
     {
-        //
-        Schema::table('members', function($table) {
-            $table->dropColumn('seat_no');
-        });
+        // drop majors table
+        Schema::dropIfExists('majors');
     }
 }

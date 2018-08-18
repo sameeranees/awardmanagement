@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
+class CreateMembersHistory extends Migration
 {
     /**
      * Run the migrations.
@@ -13,50 +13,7 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('degrees', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('degree_name');
-        });
-        Schema::create('majors', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('majors_name');
-            $table->integer('degree_id')->unsigned();
-            $table->foreign('degree_id')->references('id')->on('degrees')
-                ->onUpdate('cascade')->onDelete('cascade');
-        });
-        Schema::create('members', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('first_name');
-            $table->string('surname');
-            $table->string('fathers_name');
-            $table->string('gender');
-            $table->string('phone');
-            $table->string('email');
-            $table->string('dam_no');
-            $table->string('address');
-            $table->unique(['first_name','surname','dam_no']);
-            $table->string('name_of_institute');
-            $table->integer('marks_obtained')->nullable();
-            $table->integer('total_marks')->nullable();
-            $table->float('gpa')->nullable();
-            $table->string('distinctions')->nullable();
-            $table->integer('passing_year')->nullable();
-            $table->string('previous_qualifications')->nullable();
-            $table->integer('A*s')->nullable();
-            $table->integer('As')->nullable();
-            $table->integer('Bs')->nullable();
-            $table->integer('Cs')->nullable();
-            $table->integer('Ds')->nullable();
-            $table->integer('Fs')->nullable();
-            $table->integer('degree_id')->unsigned();
-            $table->integer('majors_id')->unsigned();
-            $table->foreign('degree_id')->references('id')->on('degrees')
-                ->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('majors_id')->references('id')->on('majors')
-                ->onUpdate('cascade')->onDelete('cascade');
-            $table->boolean('status')->default(1);
-            $table->timestamps();
-        });
+        //
         Schema::create('members_family_history', function (Blueprint $table) {
             $table->increments('id');
             $table->string('relative_name1')->nullable();
@@ -102,9 +59,7 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('members');
-        Schema::dropIfExists('majors');
-        Schema::dropIfExists('degrees');
+        //
         Schema::dropIfExists('members_family_history');
     }
 }

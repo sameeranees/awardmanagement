@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTables extends Migration
+class CreateUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -20,7 +20,7 @@ class CreateUsersTables extends Migration
             $table->string('password');
             $table->string('phone')->nullable();
             $table->boolean('status')->default(0);
-            $table->enum('type', ['super_admin', 'system_user', 'rider', 'customer'])->comment('super_admin = owner of application, system_user = can access dashboard for certain actions, rider = can login via rider app, customer = can login via customer app');
+            $table->enum('type', ['super_admin', 'system_user', 'customer'])->comment('super_admin = owner of application, system_user = can access dashboard for certain actions, rider = can login via rider app, customer = can login via customer app');
             $table->text('token')->nullable()->comment('API auth token');
             $table->rememberToken();
             $table->timestamps();
