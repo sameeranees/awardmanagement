@@ -11,6 +11,9 @@ use App\Http\Requests\MemberRequest;
 use App\Degree;
 use App\Major;
 use App\MembersFamilyHistory;
+use App\Exports\UsersExport;
+use Excel;
+use Illuminate\Support\Facades\Input;
 
 class MembersController extends Controller
 {
@@ -253,5 +256,26 @@ class MembersController extends Controller
         }
 
         return redirect()->route($section->slug);
+    }
+
+    public function export() 
+    {
+        $export= Member::all();
+        Excel::create('Export Data',function($excel) use($export){
+            $excel->sheet('Sheet1',function($sheet) use($export){
+                $sheet->fromArray($export);
+            });
+        })->export('xlsx');
+    }
+    public function getImport(){
+        return view('excel.importMembers');
+    }
+    public function postImport(){
+        Excel::load(Input::file('members'),function($reader){
+            $reader->each(function($sheet){
+                Member::firstorCreate($sheet->toArray());
+            });
+        });
+        return back();
     }
 }

@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+{!! Charts::assets() !!}
     <div class="row">
           <div class="col-xl-3 col-lg-6 col-12">
             <div class="card" style="background-color:rgb(0, 199, 197)">
@@ -89,6 +90,16 @@
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            {!! $chart->render() !!}
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            {!! $chart2->render() !!}
           </div>
         </div>
 @endsection

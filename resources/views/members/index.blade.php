@@ -12,13 +12,15 @@
 @section('content')
     <div class="row">
     <div class="col-md-12">
-      <div class="card">
+      <div class="card" style='position: relative; overflow: scroll;'>
         
         <div class="card-header">
           <h4 class="card-title">{{ $section->heading }}</h4>
           <div class="heading-elements">
             <div class="btn-group">
               <a href="{{ route($section->slug.'.create') }}" class="btn btn-info">Create</a>
+              <a href="{{ route($section->slug.'.getImport') }}" class="btn btn-info">Import</a>
+              <a href="{{ route($section->slug.'.export') }}" class="btn btn-info">Export</a>
             </div>
           </div>
         </div>
