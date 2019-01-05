@@ -316,7 +316,7 @@
             <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
               <span class="avatar avatar-online">
                 <img src="{{ asset('assets/images/portrait/small/avatar-s-1.png') }}" alt="avatar"><i></i></span>
-              <span class="user-name">{{ auth()->user()->name }}</span>
+              <span class="user-name">{{  Auth::user()->username }}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="user-profile.html"><i class="ft-user"></i> Edit Profile</a>
               <a class="dropdown-item" href="email-application.html"><i class="ft-mail"></i> My Inbox</a>
