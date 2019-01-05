@@ -16,6 +16,7 @@ class CreateMembersHistory extends Migration
         //
         Schema::create('members_family_history', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('member_id');
             $table->string('relative_name1')->nullable();
             $table->string('relative_name2')->nullable();
             $table->string('relative_name3')->nullable();

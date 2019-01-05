@@ -249,6 +249,7 @@ class MembersController extends Controller
     public function destroy(Member $member)
     {
         //
+        $section = $this->section;
         $member->delete();
 
         if (request()->ajax()) {
