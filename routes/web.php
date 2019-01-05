@@ -44,3 +44,7 @@ Route::group(['middleware' => ['auth', 'web']], function () {
 	Route::resource('majors', 'MajorsController');
 	Route::resource('year', 'YearController');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
