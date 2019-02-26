@@ -261,9 +261,14 @@ class MembersController extends Controller
 
     public function export() 
     {
-        $export= Member::all();
-        Excel::create('Export Data',function($excel) use($export){
-            $excel->sheet('Sheet1',function($sheet) use($export){
+        $exp=Member::all();
+        $export=MembersFamilyHistory::all();
+        //dd($export);
+        Excel::create('Export Data',function($excel) use($exp,$export){
+            $excel->sheet('Sheet1',function($sheet) use($exp){
+                $sheet->fromArray($exp);
+            });
+            $excel->sheet('Sheet2',function($sheet) use($export){
                 $sheet->fromArray($export);
             });
         })->export('xlsx');
@@ -272,10 +277,30 @@ class MembersController extends Controller
         return view('excel.importMembers');
     }
     public function postImport(){
-        Excel::load(Input::file('members'),function($reader){
-            $reader->each(function($sheet){
-                Member::firstorCreate($sheet->toArray());
-            });
+        Excel::selectSheets('Sheet1')->load(Input::file('members'),function($reader){
+            //dd($reader);
+            $sheet=$reader->get();
+            $info=$sheet->toArray();
+            $meminfo=[];
+            $memfaminfo=[];
+            //dd($info);
+            foreach ($info as $key) {
+                $ids=array_slice($key,0,1);
+                $key1=array_slice($key,0,29);
+                array_push($meminfo, $key1);
+                $key2=array_slice($key,29,64);
+                $key2=array_merge($ids,$key2);
+                $key2=array($key2);                    //dd($key2);
+                array_push($memfaminfo, $key2);
+                //dd($key2);
+                $member=$this->model::firstorCreate($key1);
+                $member->family_historys()->createMany($key2);
+            }
+                //dd($memfaminfo);
+                //dd($memfaminfo);
+                //foreach ($memfaminfo as $key) {
+                  //  MembersFamilyHistory::create($key);
+                //}    
         });
         return back();
     }
